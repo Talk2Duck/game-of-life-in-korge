@@ -46,12 +46,12 @@ private fun Graphics.grid() {
 }
 
 private fun Graphics.board(board: Board) {
-    for (cell in board.populatedCells) {
-        val centerX: Int = (windowWidth / cellSize) / 2
-        val centerY: Int = (windowHeight / cellSize) / 2
-        fill(cellColor) {
-            val x1 = (centerX + cell.x - 1) * (cellSize)
-            val y1 = (centerY + cell.y - 1) * (cellSize)
+    val centerX: Int = (windowWidth / cellSize) / 2
+    val centerY: Int = (windowHeight / cellSize) / 2
+    fill(cellColor) {
+        for (cell in board.populatedCells) {
+            val x1 = (centerX + cell.x - 1) * cellSize
+            val y1 = (centerY + cell.y - 1) * cellSize
             rect(x1, y1, cellSize, cellSize)
         }
     }
