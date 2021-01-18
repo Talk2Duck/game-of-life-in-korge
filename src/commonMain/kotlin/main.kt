@@ -17,7 +17,7 @@ val cellColor = Colors["#FF7F50"]
 const val cellSize = 10
 const val windowWidth: Int = 2000
 const val windowHeight: Int = 1000
-const val seedBoard = ascii1
+const val seedBoard = parasiteSeed
 
 suspend fun main() = Korge(
     width = windowWidth,
