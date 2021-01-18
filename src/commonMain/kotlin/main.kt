@@ -1,7 +1,9 @@
 import com.soywiz.klock.milliseconds
 import com.soywiz.korge.Korge
 import com.soywiz.korge.view.Graphics
-import com.soywiz.korge.view.graphics
+import com.soywiz.korge.view.sgraphics
+import com.soywiz.korgw.GameWindow
+import com.soywiz.korgw.GameWindow.Quality.PERFORMANCE
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.vector.StrokeInfo
 import com.soywiz.korio.async.delay
@@ -15,19 +17,26 @@ val cellColor = Colors["#FF7F50"]
 const val cellSize = 10
 const val windowWidth: Int = 2000
 const val windowHeight: Int = 1000
-const val seedBoard = parasiteSeed
+const val seedBoard = ascii1
 
-suspend fun main() = Korge(width = windowWidth, height = windowHeight, bgcolor = backgroundColor) {
+suspend fun main() = Korge(
+    width = windowWidth,
+    height = windowHeight,
+    bgcolor = backgroundColor,
+    quality = PERFORMANCE,
+    blocking = false,
+    title = "Conway's Game of Life in Korge"
+) {
     var currentBoard = asciiToBoard(seedBoard)
 
-    graphics {
+    sgraphics {
         launchImmediately {
             while (true) {
                 clear()
                 board(currentBoard)
                 grid()
                 currentBoard = currentBoard.evolve()
-                delay(500.milliseconds)
+                delay(100.milliseconds)
             }
         }
     }
